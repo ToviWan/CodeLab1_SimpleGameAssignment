@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float forceAmount = 0;
-    private Rigidbody rb;
+    Rigidbody rb;
     
     // Start is called before the first frame update
     void Start()
@@ -16,14 +16,25 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (Input.GetKey(KeyCode.A))
-            rb.AddForce(Vector3.left);
-        if (Input.GetKey(KeyCode.D))
-            rb.AddForce(Vector3.right);
         if (Input.GetKey(KeyCode.W))
-            rb.AddForce(Vector3.up);
+        {
+            Debug.Log("W Pressed");
+            rb.AddForce(0, 0, forceAmount);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(-forceAmount, 0, 0);
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(forceAmount, 0, 0);
+        }
+
         if (Input.GetKey(KeyCode.S))
-            rb.AddForce(Vector3.down);
+        {
+            rb.AddForce(0,0, -forceAmount);
+        }
     }
 }
