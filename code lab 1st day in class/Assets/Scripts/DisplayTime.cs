@@ -22,6 +22,6 @@ public class DisplayTime : MonoBehaviour
         float minutes = Mathf.FloorToInt(t / 60);
         float seconds = Mathf.FloorToInt(t % 60);
         timetxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-
+        DataHolder.timeTxt = timetxt.text;// get the time text from this scene and store it into DataHolder
     }
 }

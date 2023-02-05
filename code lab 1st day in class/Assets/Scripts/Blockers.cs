@@ -6,26 +6,22 @@ using Random = System.Random;
 
 public class Blockers : MonoBehaviour
 {
-    public float frequency = 1f;    //movement speed
-    public float amplitude = 1f;    //movement amount
     Vector3 startPos;
-    float elapsedTime = 0f;
-
-    public Vector3 dropSpeed = new Vector3(0,.1f,0);
-    // Use t$$anonymous$$s for initialization
+    public Vector3 dropSpeed; //set the drop speed of the red blockers
+    private float acce;//set up the acceleration to the blocker
     void Start () {
         startPos = transform.position;
     }
     // Update is called once per frame
-    void Update () {
-        elapsedTime += Time.deltaTime * Time.timeScale * frequency;
-        transform.position -= dropSpeed;
-        
+    void Update ()
+    {
+        acce += Time.deltaTime;
+        transform.position -= dropSpeed * acce;// make the blockers go down on y axis
     }
 
-    private void OnBecameInvisible()
+    private void OnBecameInvisible()//OnBecameVisible is called when the renderer became visible by any camera.
     {
-        transform.position = new Vector3(UnityEngine.Random.Range(-29f,16f),startPos.y,startPos.z);
+        transform.position = new Vector3(UnityEngine.Random.Range(-28.5f,16f),startPos.y,startPos.z);//make the red blocker appear from a random position between -28.5 to 16
         
     }
 }

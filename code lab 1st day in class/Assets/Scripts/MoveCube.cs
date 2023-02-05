@@ -20,19 +20,24 @@ public class MoveCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))//move left
         {
-            rb.AddForce(-speed, 0, 0);
+            rb.velocity= new (-speed, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))//move right
         {
-            rb.AddForce(speed, 0, 0);
+            rb.velocity= new (speed, 0, 0);
+        }
+
+        if (Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false)
+        {
+            rb.velocity = Vector3.zero;//stop move when no keys being pressed
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);//go to scene Minigame2  when green cube and the red blockers hit together 
     }
 }
